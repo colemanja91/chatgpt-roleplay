@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_26_004554) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_26_234508) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -19,6 +19,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_26_004554) do
     t.string "system_message", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "system_message_tokens", default: 0
     t.index ["name"], name: "unique_characters", unique: true
   end
 
@@ -28,6 +29,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_26_004554) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "character_id"
+    t.bigint "tokens", default: 0
     t.index ["character_id"], name: "index_messages_on_character_id"
   end
 
@@ -36,6 +38,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_26_004554) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "character_id"
+    t.bigint "tokens", default: 0
     t.index ["character_id"], name: "index_summaries_on_character_id"
   end
 

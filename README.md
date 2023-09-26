@@ -46,9 +46,25 @@ If you want to use a different environment variable, you can update the setting 
 Initial development is happening during Twitch streams, and we'll use this as our work tracker for now.
 
 * Dockerize?
-* Specs
 * Better cutoff limits around tokens
 * Implement summaries
 * Rake tasks? 
 * Explore audio capture (if frontend, then setup API)
 * integrate with speech-to-text
+
+Summaries / tokens
+* persist token estimate to the DB on create/update
+* dynamically construct message context size
+
+TOTAL LIMIT - 100 (buffer for estimates) - NewMessageTokens - SystemMessageTokens = VariableLimit
+
+4096 - 100 - 200 - 1000 = 2,796
+
+VariableLimit * 0.66 = MaxSummarySize
+VariableLimit - ActualSummarySize = RecentMessageSize
+
+1/3 recent messages
+2/3 summaries
+
+How often do we generate summaries?
+* Every 1,200 tokens? 
