@@ -46,6 +46,7 @@ If you want to use a different environment variable, you can update the setting 
 Initial development is happening during Twitch streams, and we'll use this as our work tracker for now.
 
 * Dockerize?
+* Specs
 * Better cutoff limits around tokens
 * Implement summaries
 * Rake tasks? 

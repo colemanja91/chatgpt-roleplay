@@ -18,9 +18,9 @@ class CharacterChatService
       character.messages.create!(role: "assistant", content: response)
       puts "Response: #{response}"
     end
+  rescue OpenaiService::OpenaiError => e
+    puts "Oh noes! #{e.inspect}"
   end
-
-  private
 
   # We want the most recent messages, but returned in
   # order of least-to-most recent
@@ -33,6 +33,8 @@ class CharacterChatService
 
     messages.reverse
   end
+
+  private
 
   def estimated_token_count(messages)
     messages.sum { |m| OpenAI.rough_token_count(m[:content]) }
