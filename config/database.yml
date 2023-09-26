@@ -1,0 +1,18 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: chatgpt_roleplay_development
+
+test:
+  <<: *default
+  database: chatgpt_roleplay_test
+
+production:
+  <<: *default
+  database: chatgpt_roleplay_production
+  username: chatgpt_roleplay
+  password: <%= ENV["CHATGPT_ROLEPLAY_DATABASE_PASSWORD"] %>
