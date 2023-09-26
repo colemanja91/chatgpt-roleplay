@@ -80,6 +80,11 @@ GEM
       reline (>= 0.3.1)
     diff-lcs (1.5.0)
     erubi (1.12.0)
+    factory_bot (6.2.1)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.2.0)
+      factory_bot (~> 6.2.0)
+      railties (>= 5.0.0)
     faraday (2.7.11)
       base64
       faraday-net_http (>= 2.0, < 3.1)
@@ -249,6 +254,7 @@ DEPENDENCIES
   bootsnap
   byebug
   debug
+  factory_bot_rails
   fittings
   pg (~> 1.1)
   puma (~> 5.0)
