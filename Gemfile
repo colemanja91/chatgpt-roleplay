@@ -13,6 +13,9 @@ gem "pg", "~> 1.1"
 gem "puma", "~> 5.0"
 
 gem "fittings"
+gem "graphql"
+gem "graphiql-rails"
+gem "rack-cors"
 gem "ruby-openai"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
