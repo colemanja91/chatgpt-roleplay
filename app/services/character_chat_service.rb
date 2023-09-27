@@ -13,9 +13,7 @@ class CharacterChatService
     character.transaction do
       character.messages.create!(role: "user", content: message)
 
-      messages = prepared_messages
-
-      response = openai.get_chat_completion(messages: messages)
+      response = openai.get_chat_completion(messages: prepared_messages)
       character.messages.create!(role: "assistant", content: response)
       puts "Response: #{response}"
     end

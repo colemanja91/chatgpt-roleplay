@@ -67,3 +67,9 @@ VariableLimit - ActualSummarySize = RecentMessageSize
 
 How often do we generate summaries?
 * Every 1,200 tokens? 
+
+## Audio
+
+https://apple.stackexchange.com/questions/326388/terminal-command-to-record-audio-through-macbook-microphone
+
+https://cloud.google.com/speech-to-text/docs/samples/speech-transcribe-auto-punctuation?hl=en#speech_transcribe_auto_punctuation-ruby
