@@ -1,4 +1,6 @@
 class CharacterChatService
+  MAX_TOKENS = 4096
+
   def initialize(character:)
     @character = character
   end
@@ -8,7 +10,6 @@ class CharacterChatService
   def response(message:)
     # wrap in transaction so we don't save the user message
     # if the OpenAI API call fails
-    # max tokens: 4,097
     character.transaction do
       character.messages.create!(role: "user", content: message)
 
@@ -26,7 +27,10 @@ class CharacterChatService
   # order of least-to-most recent
   # system message always needs to be first
   def prepared_messages
-    messages = character.messages.order(id: :desc).limit(10).map { |m| {role: m.role, content: m.content} }
+    # 200 is an arbitrary token size buffer because we are working with estimates
+    message_token_limit = MAX_TOKENS - character.system_message_tokens - 200
+    message_set = character.messages.from_desc_token_sum.where("from_recent_token_sum < ?", message_token_limit).order(id: :desc)
+    messages = message_set.map { |m| {role: m.role, content: m.content} }
     messages << {role: "system", content: character.system_message}
 
     puts "Token count: #{estimated_token_count(messages)}"
