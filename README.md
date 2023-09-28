@@ -5,6 +5,23 @@ This app is a helper for using ChatGPT to create entertaining, long-lived role-p
 I do not intend to run this app in a "production" (live, on-web) environment, due to OpenAI costs. But, I hope folks
 take the opportunity to run this locally.
 
+The front-end is built in React: https://github.com/colemanja91/chatgpt-roleplay-ui
+
+
+### What it does
+
+* Uses chat completion "system" messages to set the rules that the AI must follow
+* Sends input prompts to OpenAI, along with recent message history and system message
+  * Recent history is cutoff after some point based on the OpenAI max token limit
+* Stores message history and system message in database for future reference
+  * Allows for long-lived characters
+* Enables variable temperature
+  * Temperature controls how deterministic or random the output should be
+  * Default of 1 is used (same as ChatGPT)
+  * Enabling the appropriate option on message send will randomly select a valid temperature value to use
+  * Can help make things more interesting over time by ensuring ChatGPT doesn't always send easily-guessable responses
+* Serves functionality as a GraphQL API
+
 ## Setup
 
 ### Ruby Version
@@ -41,35 +58,47 @@ bundle exec rspec
 In the OpenAI developer console, create a new access token and set it in your environment as `OPENAI_ACCESS_TOKEN`.
 If you want to use a different environment variable, you can update the setting value in `config/settings.default.yml`.
 
+## Running App
+
+```sh
+bundle exec rails s
+```
+
+GraphQL queries can be routed to `http://127.0.0.1:3000/graphql`. 
+
+Graphiql is mounted at [http://127.0.0.1:3000/graphiql](http://127.0.0.1:3000/graphiql) and can be used for schema introspection and testing.
+
 ## TODO
 
-Initial development is happening during Twitch streams, and we'll use this as our work tracker for now.
+Initial development is happening during Twitch streams, and we'll use this as our backend work tracker for now.
 
+**Now**
+
+* Add variable temperature option for messages
+* Track actual token usage for cost reporting
+  * New table
+    * Character ID
+    * Min message ID
+    * Max Message ID
+    * Estimated tokens
+    * Actual tokens
+
+**Next**
+
+* Generate a summary message from a range of message history
+  * Ask ChatGPT to summarize history in 1 - 2 sentences and provide an importance score of 0 - 10
+  * Store
+    * Raw response (for debugging)
+    * Response without importance score
+    * Importance score
+* Add Sidekiq + Redis for background processing
+* Enqueue a job to generate summary messages after every message send
+  * Should be idempotent if no summary is needed
+* Include summaries in system message
+  * Only summaries generated from messages before current message range
+  * Only the top 3 summaries ranked by ChatGPT-determined importance and recency
+
+**Later**
+
+* Add token usage summary to character query
 * Dockerize?
-* Rake tasks? 
-* Explore audio capture (if frontend, then setup API)
-* integrate with speech-to-text
-* Implement summaries
-
-Summaries / tokens
-* persist token estimate to the DB on create/update
-* dynamically construct message context size
-
-TOTAL LIMIT - 100 (buffer for estimates) - NewMessageTokens - SystemMessageTokens = VariableLimit
-
-4096 - 100 - 200 - 1000 = 2,796
-
-VariableLimit * 0.66 = MaxSummarySize
-VariableLimit - ActualSummarySize = RecentMessageSize
-
-1/3 recent messages
-2/3 summaries
-
-How often do we generate summaries?
-* Every 1,200 tokens? 
-
-## Audio
-
-https://apple.stackexchange.com/questions/326388/terminal-command-to-record-audio-through-macbook-microphone
-
-https://cloud.google.com/speech-to-text/docs/samples/speech-transcribe-auto-punctuation?hl=en#speech_transcribe_auto_punctuation-ruby
