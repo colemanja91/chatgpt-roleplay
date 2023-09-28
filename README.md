@@ -74,6 +74,7 @@ Initial development is happening during Twitch streams, and we'll use this as ou
 
 **Now**
 
+* GraphQL Specs
 * Add variable temperature option for messages
 * Track actual token usage for cost reporting
   * New table
