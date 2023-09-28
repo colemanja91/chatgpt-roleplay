@@ -33,12 +33,12 @@ RSpec.describe "Character Query" do
 
     it "returns the character" do
       result = subject
-      expect(subject["data"]["character"]["id"].to_i).to eq(character.id)
+      expect(result["data"]["character"]["id"].to_i).to eq(character.id)
     end
 
     it "returns the messages" do
       result = subject
-      expect(subject["data"]["character"]["messages"][0]["id"].to_i).to eq(message.id)
+      expect(result["data"]["character"]["messages"][0]["id"].to_i).to eq(message.id)
     end
   end
 

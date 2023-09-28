@@ -5,9 +5,9 @@ class CharacterChatService
     @character = character
   end
 
-  attr_reader :character
+  attr_reader :character, :error
 
-  def response(message:)
+  def send_message(message:)
     # wrap in transaction so we don't save the user message
     # if the OpenAI API call fails
     character.transaction do
@@ -15,10 +15,10 @@ class CharacterChatService
 
       response = openai.get_chat_completion(messages: prepared_messages)
       character.messages.create!(role: "assistant", content: response)
-      puts "Response: #{response}"
     end
   rescue OpenaiService::OpenaiError => e
     puts "Oh noes! #{e.inspect}"
+    @error = "error calling OpenAI"
   end
 
   # We want the most recent messages, but returned in

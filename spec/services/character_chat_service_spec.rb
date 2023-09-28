@@ -38,7 +38,7 @@ RSpec.describe CharacterChatService do
     end
 
     it "persists both user and assistant messages" do
-      expect { subject.response(message: "test") }.to change { character.messages.count }.by(2)
+      expect { subject.send_message(message: "test") }.to change { character.messages.count }.by(2)
     end
   end
 
@@ -48,7 +48,7 @@ RSpec.describe CharacterChatService do
     end
 
     it "does not persist anything" do
-      expect { subject.response(message: "test") }.not_to change { character.messages.count }
+      expect { subject.send_message(message: "test") }.not_to change { character.messages.count }
     end
   end
 end

@@ -7,7 +7,7 @@ module Mutations
     argument :system_message, String, required: true
 
     def resolve(name:, system_message:)
-      character = Character.build(name: name, system_message: system_message)
+      character = Character.new(name: name, system_message: system_message)
 
       if character.save
         {

@@ -74,15 +74,8 @@ Initial development is happening during Twitch streams, and we'll use this as ou
 
 **Now**
 
-* GraphQL Specs
+* Message mutation
 * Add variable temperature option for messages
-* Track actual token usage for cost reporting
-  * New table
-    * Character ID
-    * Min message ID
-    * Max Message ID
-    * Estimated tokens
-    * Actual tokens
 
 **Next**
 
@@ -101,5 +94,12 @@ Initial development is happening during Twitch streams, and we'll use this as ou
 
 **Later**
 
+* Track actual token usage for cost reporting
+  * New table
+    * Character ID
+    * Min message ID
+    * Max Message ID
+    * Estimated tokens
+    * Actual tokens
 * Add token usage summary to character query
 * Dockerize?
