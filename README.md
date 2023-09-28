@@ -74,8 +74,7 @@ Initial development is happening during Twitch streams, and we'll use this as ou
 
 **Now**
 
-* Message mutation
-* Add variable temperature option for messages
+YAY
 
 **Next**
 

@@ -7,13 +7,16 @@ class CharacterChatService
 
   attr_reader :character, :error
 
-  def send_message(message:)
+  def send_message(message:, variable_temp: false)
     # wrap in transaction so we don't save the user message
     # if the OpenAI API call fails
     character.transaction do
       character.messages.create!(role: "user", content: message)
 
-      response = openai.get_chat_completion(messages: prepared_messages)
+      # select a random temperature
+      temp = variable_temp ? random_temperature : 1
+
+      response = openai.get_chat_completion(messages: prepared_messages, temperature: temp)
       character.messages.create!(role: "assistant", content: response)
     end
   rescue OpenaiService::OpenaiError => e
@@ -37,6 +40,10 @@ class CharacterChatService
   end
 
   private
+
+  def random_temperature
+    (0.1..1.8).step(0.1).to_a.sample.round(1)
+  end
 
   def estimated_token_count(messages)
     messages.sum { |m| OpenAI.rough_token_count(m[:content]) }
