@@ -15,7 +15,7 @@ RSpec.describe "Create Character Mutation" do
     querystring
   end
 
-  let(:variables) { {input: {name: "test name", systemMessage: "test system message"}} }
+  let(:variables) { {input: {name: "test name", systemMessage: "test system message", ttsEnabled: true}} }
   let(:subject) { ChatgptRoleplaySchema.execute(mutation, variables: variables) }
 
   it "creates the character" do

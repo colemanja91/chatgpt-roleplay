@@ -5,9 +5,10 @@ module Mutations
 
     argument :name, String, required: true
     argument :system_message, String, required: true
+    argument :tts_enabled, Boolean, required: false
 
-    def resolve(name:, system_message:)
-      character = Character.new(name: name, system_message: system_message)
+    def resolve(name:, system_message:, tts_enabled: false)
+      character = Character.new(name: name, system_message: system_message, tts_enabled: tts_enabled)
 
       if character.save
         {

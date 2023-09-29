@@ -8,6 +8,7 @@ module Types
     field :created_at, GraphQL::Types::ISO8601DateTime, null: false
     field :updated_at, GraphQL::Types::ISO8601DateTime, null: false
     field :system_message_tokens, Integer
+    field :tts_enabled, Boolean
 
     field :messages, [MessageType], null: false
     def messages

@@ -9,5 +9,6 @@ module Types
     field :updated_at, GraphQL::Types::ISO8601DateTime, null: false
     field :character_id, Integer
     field :tokens, Integer
+    field :tts_file_path, String
   end
 end
