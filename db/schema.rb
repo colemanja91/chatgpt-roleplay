@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_26_234508) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_29_202656) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,6 +20,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_26_234508) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "system_message_tokens", default: 0
+    t.boolean "tts_enabled", default: false
+    t.string "tts_file_path"
     t.index ["name"], name: "unique_characters", unique: true
   end
 

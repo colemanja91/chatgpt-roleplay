@@ -1,2 +1,6 @@
 openai:
   access_token: <%= ENV.fetch("OPENAI_ACCESS_TOKEN") %>
+data:
+  shared_data_directory: <%= ENV.fetch("SHARED_DATA_DIR", "") %>
+elevenlabs:
+  api_key: <%= ENV.fetch("ELEVENLABS_API_KEY") %>
