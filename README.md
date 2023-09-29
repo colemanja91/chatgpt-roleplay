@@ -22,6 +22,19 @@ The front-end is built in React: https://github.com/colemanja91/chatgpt-roleplay
   * Can help make things more interesting over time by ensuring ChatGPT doesn't always send easily-guessable responses
 * Serves functionality as a GraphQL API
 
+### Example 1 - System Prompt + Most Recent Messages
+
+* Your character has the following state:
+  * System message of 500 tokens
+  * Message history of 100 messages (both `user` and `assistant`)
+    * Each message length is 50 tokens (simplification for the sake of example, in reality this will be variable)
+  * New input message of 150 tokens
+* In order to meet OpenAI's API token size limits, the following will be sent:
+  * The system message
+  * The new input message
+  * The most recent 32 messages from history
+  * Total request token size: 3,850
+
 ## Setup
 
 ### Ruby Version
@@ -93,6 +106,8 @@ YAY
 
 **Later**
 
+* Explore using GraphQL Subscriptions for messages
+  * If it works, move OpenAI calls to a background job
 * Track actual token usage for cost reporting
   * New table
     * Character ID
