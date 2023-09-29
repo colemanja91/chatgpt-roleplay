@@ -21,7 +21,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_29_205417) do
     t.datetime "updated_at", null: false
     t.bigint "system_message_tokens", default: 0
     t.boolean "tts_enabled", default: false
-    t.string "tts_file_path"
     t.string "xi_voice_id"
     t.decimal "xi_similarity_boost"
     t.decimal "xi_stability"
@@ -36,6 +35,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_29_205417) do
     t.datetime "updated_at", null: false
     t.bigint "character_id"
     t.bigint "tokens", default: 0
+    t.string "tts_file_path"
     t.index ["character_id"], name: "index_messages_on_character_id"
   end
 

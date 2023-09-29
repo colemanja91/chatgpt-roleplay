@@ -20,6 +20,7 @@ RSpec.describe "Character Query" do
               role
               content
               tokens
+              ttsFilePath
             }
           }
         }
