@@ -103,17 +103,10 @@ YAY
 * Include summaries in system message
   * Only summaries generated from messages before current message range
   * Only the top 3 summaries ranked by ChatGPT-determined importance and recency
+  * Toggleable via API
 
 **Later**
 
 * Explore using GraphQL Subscriptions for messages
   * If it works, move OpenAI calls to a background job
-* Track actual token usage for cost reporting
-  * New table
-    * Character ID
-    * Min message ID
-    * Max Message ID
-    * Estimated tokens
-    * Actual tokens
-* Add token usage summary to character query
 * Dockerize?
