@@ -16,7 +16,7 @@ class ElevenlabsService
       }
     )
 
-    filename = "#{Setting.data.shared_data_directory}/message_#{message.id}_tts.mp3"
+    filename = "#{Setting.data(:shared_data_directory)}/message_#{message.id}_tts.mp3"
     File.write(filename, speech)
     message.update(tts_file_path: filename)
   end
