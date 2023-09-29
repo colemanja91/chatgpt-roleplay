@@ -10,7 +10,11 @@ module Mutations
     def resolve(character_id:, message:, variable_temp: false)
       character = Character.find(character_id)
       service = CharacterChatService.new(character: character)
-      service.send_message(message: message, variable_temp: variable_temp)
+      response_message = service.send_message(message: message, variable_temp: variable_temp)
+
+      if response_message && service.error.nil?
+        GenerateMessageTtsJob.perform_async(response_message.id)
+      end
 
       if service.error
         {

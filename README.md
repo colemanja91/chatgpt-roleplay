@@ -45,6 +45,10 @@ The front-end is built in React: https://github.com/colemanja91/chatgpt-roleplay
 
 This app was developed against PostgreSQL 14.
 
+### Redis
+
+Doesn't really matter what, just get it running.
+
 ### Local setup
 
 Install dependencies:
