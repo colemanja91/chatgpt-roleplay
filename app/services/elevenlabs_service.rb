@@ -1,6 +1,14 @@
 class ElevenlabsService
+  MAX_TEXT_LENGTH = 5000.freeze
+
   def text_to_speech(message)
     content = message.content
+
+    if content.length > MAX_TEXT_LENGTH
+      puts "Cannot generate TTS for message #{message.id}, length too long"
+      return
+    end
+
     voice_id = "nlh17gSD8ihOEnpn4DWI"
     speech = client.post(
       "text-to-speech/#{voice_id}",
@@ -16,8 +24,9 @@ class ElevenlabsService
       }
     )
 
-    filename = "#{Setting.data(:shared_data_directory)}/message_#{message.id}_tts.mp3"
-    File.write(filename, speech)
+    filename = "message_#{message.id}_tts.mp3"
+    filepath = "#{Setting.data(:shared_data_directory)}/#{filename}"
+    File.write(filepath, speech)
     message.update(tts_file_path: filename)
   end
 
