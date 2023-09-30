@@ -31,5 +31,10 @@ module Types
     def characters
       Character.all
     end
+
+    field :openai_models, [OpenaiModelType], "List OpenAI Models"
+    def openai_models
+      OpenaiService.new.list_models
+    end
   end
 end

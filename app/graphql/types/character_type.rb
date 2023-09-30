@@ -9,6 +9,7 @@ module Types
     field :updated_at, GraphQL::Types::ISO8601DateTime, null: false
     field :system_message_tokens, Integer
     field :tts_enabled, Boolean
+    field :openai_model, String
 
     field :messages, [MessageType], null: false
     def messages

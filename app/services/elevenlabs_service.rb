@@ -1,5 +1,5 @@
 class ElevenlabsService
-  MAX_TEXT_LENGTH = 5000.freeze
+  MAX_TEXT_LENGTH = 5000
 
   def text_to_speech(message)
     content = message.content

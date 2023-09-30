@@ -18,7 +18,7 @@ class CharacterChatService
       # select a random temperature
       temp = variable_temp ? random_temperature : 1
 
-      response = openai.get_chat_completion(messages: prepared_messages, temperature: temp)
+      response = openai.get_chat_completion(messages: prepared_messages, temperature: temp, model: character.openai_model)
       response_message = character.messages.create!(role: "assistant", content: response)
     end
     response_message
