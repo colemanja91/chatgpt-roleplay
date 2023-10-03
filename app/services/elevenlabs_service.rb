@@ -9,16 +9,21 @@ class ElevenlabsService
       return
     end
 
-    voice_id = "nlh17gSD8ihOEnpn4DWI"
+    character = message.character
+    voice_id = character.xi_voice_id || "nlh17gSD8ihOEnpn4DWI"
+    similarity_boost = character.xi_similarity_boost || 0
+    stability = character.xi_stability || 0
+    style = character.xi_style || 0
+
     speech = client.post(
       "text-to-speech/#{voice_id}",
       {
         model: "eleven_monolingual_v2",
         text: content,
         voice_settings: {
-          similarity_boost: 0.6,
-          stability: 0.35,
-          style: 0.8,
+          similarity_boost: similarity_boost,
+          stability: stability,
+          style: style,
           use_speaker_boost: true
         }
       }
