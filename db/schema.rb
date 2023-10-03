@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_30_172010) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_03_120031) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -37,6 +37,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_30_172010) do
     t.bigint "character_id"
     t.bigint "tokens", default: 0
     t.string "tts_file_path"
+    t.decimal "temperature"
     t.index ["character_id"], name: "index_messages_on_character_id"
   end
 

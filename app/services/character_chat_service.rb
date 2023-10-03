@@ -19,7 +19,7 @@ class CharacterChatService
       temp = variable_temp ? random_temperature : 1
 
       response = openai.get_chat_completion(messages: prepared_messages, temperature: temp, model: character.openai_model)
-      response_message = character.messages.create!(role: "assistant", content: response)
+      response_message = character.messages.create!(role: "assistant", content: response, temperature: temp)
     end
     response_message
   rescue OpenaiService::OpenaiError => e
@@ -45,7 +45,7 @@ class CharacterChatService
   private
 
   def random_temperature
-    (0.1..1.8).step(0.1).to_a.sample.round(1)
+    (0.8..1.2).step(0.1).to_a.sample.round(1)
   end
 
   def estimated_token_count(messages)
