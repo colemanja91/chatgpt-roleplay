@@ -13,6 +13,7 @@ module Mutations
     argument :xi_stability, Float, required: false
     argument :xi_style, Float, required: false
     argument :context_size, Integer, required: false
+    argument :variable_temperature_enabled, Boolean, required: false
 
     def resolve(
       id:,
@@ -24,7 +25,8 @@ module Mutations
       xi_similarity_boost: nil,
       xi_stability: nil,
       xi_style: nil,
-      context_size: nil
+      context_size: nil,
+      variable_temperature_enabled: nil
     )
       character = Character.find(id)
       character.update(
@@ -36,7 +38,8 @@ module Mutations
         xi_similarity_boost: xi_similarity_boost,
         xi_stability: xi_stability,
         xi_style: xi_style,
-        context_size: context_size
+        context_size: context_size,
+        variable_temperature_enabled: variable_temperature_enabled
       )
 
       if character.save

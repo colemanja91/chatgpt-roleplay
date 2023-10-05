@@ -30,7 +30,8 @@ RSpec.describe "Update Character Mutation" do
         xiSimilarityBoost: 0.5,
         xiStability: 0.5,
         xiStyle: 0.4,
-        contextSize: 16000
+        contextSize: 16000,
+        variableTemperatureEnabled: true
       }
     }
   end

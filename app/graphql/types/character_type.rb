@@ -15,6 +15,7 @@ module Types
     field :xi_stability, Float
     field :xi_style, Float
     field :context_size, Integer
+    field :variable_temperature_enabled, Boolean
 
     field :messages, [MessageType], null: false
     def messages
