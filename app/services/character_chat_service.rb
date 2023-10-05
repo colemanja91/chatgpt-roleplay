@@ -7,7 +7,7 @@ class CharacterChatService
 
   attr_reader :character, :error
 
-  def send_message(message:, variable_temp: false)
+  def send_message(message:)
     # wrap in transaction so we don't save the user message
     # if the OpenAI API call fails
     response_message = nil
@@ -16,7 +16,7 @@ class CharacterChatService
       character.messages.create!(role: "user", content: message)
 
       # select a random temperature
-      temp = variable_temp ? random_temperature : 1
+      temp = character.variable_temperature_enabled ? random_temperature : 1
 
       response = openai.get_chat_completion(messages: prepared_messages, temperature: temp, model: character.openai_model)
       response_message = character.messages.create!(role: "assistant", content: response, temperature: temp)

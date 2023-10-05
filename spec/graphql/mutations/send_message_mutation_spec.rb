@@ -36,21 +36,4 @@ RSpec.describe "Send Message Mutation" do
     expect(openai_service).to have_received(:get_chat_completion)
     expect(GenerateMessageTtsJob).to have_received(:perform_async)
   end
-
-  context "including a variable temp" do
-    let(:variables) do
-      {
-        input: {
-          characterId: character.id,
-          message: "this is a message for ChatGPT",
-          variableTemp: true
-        }
-      }
-    end
-
-    it "calls ChatGPT and persists the messages" do
-      expect { subject }.to change { character.messages.count }.by(2)
-      expect(openai_service).to have_received(:get_chat_completion)
-    end
-  end
 end
