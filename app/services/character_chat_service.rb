@@ -1,5 +1,5 @@
 class CharacterChatService
-  MAX_TOKENS = 4096
+  DEFAULT_MAX_TOKENS = 4096
 
   def initialize(character:)
     @character = character
@@ -32,7 +32,7 @@ class CharacterChatService
   # system message always needs to be first
   def prepared_messages
     # 200 is an arbitrary token size buffer because we are working with estimates
-    message_token_limit = MAX_TOKENS - character.system_message_tokens - 200
+    message_token_limit = max_tokens - character.system_message_tokens - 200
     message_set = character.messages.from_desc_token_sum.where("from_recent_token_sum < ?", message_token_limit).order(id: :desc)
     messages = message_set.map { |m| {role: m.role, content: m.content} }
     messages << {role: "system", content: character.system_message}
@@ -43,6 +43,10 @@ class CharacterChatService
   end
 
   private
+
+  def max_tokens
+    [character.context_size, DEFAULT_MAX_TOKENS].max
+  end
 
   def random_temperature
     (0.8..1.2).step(0.1).to_a.sample.round(1)

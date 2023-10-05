@@ -19,7 +19,21 @@ RSpec.describe "Update Character Mutation" do
 
   let!(:character) { create(:character) }
 
-  let(:variables) { {input: {id: character.id, name: "updated name", systemMessage: "updated system message", ttsEnabled: true}} }
+  let(:variables) do
+    {
+      input: {
+        id: character.id,
+        name: "updated name",
+        systemMessage: "updated system message",
+        ttsEnabled: true,
+        xiVoiceId: "abc12345",
+        xiSimilarityBoost: 0.5,
+        xiStability: 0.5,
+        xiStyle: 0.4,
+        contextSize: 16000
+      }
+    }
+  end
   let(:subject) { ChatgptRoleplaySchema.execute(mutation, variables: variables) }
 
   it "updates the character" do

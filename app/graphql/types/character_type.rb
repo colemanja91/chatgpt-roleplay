@@ -14,6 +14,7 @@ module Types
     field :xi_similarity_boost, Float
     field :xi_stability, Float
     field :xi_style, Float
+    field :context_size, Integer
 
     field :messages, [MessageType], null: false
     def messages
