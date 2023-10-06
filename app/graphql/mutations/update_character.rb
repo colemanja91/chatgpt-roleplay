@@ -14,6 +14,7 @@ module Mutations
     argument :xi_style, Float, required: false
     argument :context_size, Integer, required: false
     argument :variable_temperature_enabled, Boolean, required: false
+    argument :avatar_url, String, required: false
 
     def resolve(
       id:,
@@ -26,7 +27,8 @@ module Mutations
       xi_stability: nil,
       xi_style: nil,
       context_size: nil,
-      variable_temperature_enabled: nil
+      variable_temperature_enabled: nil,
+      avatar_url: nil
     )
       character = Character.find(id)
       character.update(
@@ -39,7 +41,8 @@ module Mutations
         xi_stability: xi_stability,
         xi_style: xi_style,
         context_size: context_size,
-        variable_temperature_enabled: variable_temperature_enabled
+        variable_temperature_enabled: variable_temperature_enabled,
+        avatar_url: avatar_url
       )
 
       if character.save

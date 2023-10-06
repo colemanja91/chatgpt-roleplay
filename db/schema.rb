@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_05_111954) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_06_115542) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -28,6 +28,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_05_111954) do
     t.string "openai_model"
     t.bigint "context_size", default: 0
     t.boolean "variable_temperature_enabled", default: false
+    t.string "avatar_url"
     t.index ["name"], name: "unique_characters", unique: true
   end
 

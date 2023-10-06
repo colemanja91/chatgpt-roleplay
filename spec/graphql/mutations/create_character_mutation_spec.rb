@@ -26,7 +26,8 @@ RSpec.describe "Create Character Mutation" do
         xiStability: 0.5,
         xiStyle: 0.4,
         contextSize: 16000,
-        variableTemperatureEnabled: true
+        variableTemperatureEnabled: true,
+        avatarUrl: "foo"
       }
     }
   end

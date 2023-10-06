@@ -16,6 +16,7 @@ module Types
     field :xi_style, Float
     field :context_size, Integer
     field :variable_temperature_enabled, Boolean
+    field :avatar_url, String
 
     field :messages, [MessageType], null: false
     def messages
