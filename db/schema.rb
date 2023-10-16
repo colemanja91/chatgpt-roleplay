@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_06_115542) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_16_224714) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -29,7 +29,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_06_115542) do
     t.bigint "context_size", default: 0
     t.boolean "variable_temperature_enabled", default: false
     t.string "avatar_url"
+    t.bigint "voice_id"
     t.index ["name"], name: "unique_characters", unique: true
+    t.index ["voice_id"], name: "index_characters_on_voice_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -53,6 +55,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_06_115542) do
     t.index ["character_id"], name: "index_summaries_on_character_id"
   end
 
+  create_table "voices", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "xi_voice_id", null: false
+    t.decimal "xi_similarity_boost", default: "0.5", null: false
+    t.decimal "xi_stability", default: "0.5", null: false
+    t.decimal "xi_style", default: "0.0", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "unique_voice_names", unique: true
+  end
+
+  add_foreign_key "characters", "voices"
   add_foreign_key "messages", "characters"
   add_foreign_key "summaries", "characters"
 end

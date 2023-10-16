@@ -4,6 +4,7 @@ class Character < ApplicationRecord
   validates :context_size, inclusion: [0, 4096, 16000, 32000]
 
   has_many :messages, dependent: :destroy
+  belongs_to :voice, optional: true
 
   before_validation :set_defaults
 
