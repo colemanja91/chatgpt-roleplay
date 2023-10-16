@@ -22,5 +22,10 @@ module Types
     def messages
       object.messages.last(10)
     end
+
+    field :voice, VoiceType, null: true
+    def voice
+      object.voice
+    end
   end
 end

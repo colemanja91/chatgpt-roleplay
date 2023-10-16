@@ -2,7 +2,8 @@ require_relative "../../rails_helper"
 
 RSpec.describe "Character Query" do
   describe "Find by ID" do
-    let(:character) { create(:character) }
+    let(:voice) { create(:voice) }
+    let(:character) { create(:character, voice: voice) }
     let!(:message) { create(:user_message, character: character) }
 
     let(:query) do
@@ -21,6 +22,13 @@ RSpec.describe "Character Query" do
               content
               tokens
               ttsFilePath
+            }
+            voice {
+              id
+              xiVoiceId
+              xiSimilarityBoost
+              xiStability
+              xiStyle
             }
           }
         }
@@ -50,6 +58,9 @@ RSpec.describe "Character Query" do
           characters {
             id
             name
+            voice {
+              id
+            }
           }
         }
       GRAPHQL

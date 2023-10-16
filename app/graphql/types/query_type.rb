@@ -36,5 +36,18 @@ module Types
     def openai_models
       OpenaiService.new.list_models
     end
+
+    field :voice, VoiceType, "Find a voice by ID" do
+      argument :id, ID
+    end
+
+    def voice(id:)
+      Voice.find(id)
+    end
+
+    field :voices, [VoiceType], "List voices"
+    def voices
+      Voice.all.order(name: :asc)
+    end
   end
 end
