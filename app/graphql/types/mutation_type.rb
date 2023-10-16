@@ -7,5 +7,6 @@ module Types
     field :create_character, mutation: Mutations::CreateCharacter
     field :create_voice, mutation: Mutations::CreateVoice
     field :update_voice, mutation: Mutations::UpdateVoice
+    field :delete_voice, mutation: Mutations::DeleteVoice
   end
 end
