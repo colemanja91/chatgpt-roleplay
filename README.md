@@ -92,11 +92,7 @@ Initial development is happening during Twitch streams, and we'll use this as ou
 **Now**
 
 * Add GQL
-  * Remove character
-  * Add death
-    * Enqueues job
   * End session
-  * Reset session
 
 **Next**
 
