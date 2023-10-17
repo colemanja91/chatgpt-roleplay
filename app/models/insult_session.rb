@@ -21,6 +21,7 @@ class InsultSession < ApplicationRecord
   def start!
     self.started_at = Time.now
     self.ended_at = nil
+    self.death_counter = 0
     save!
     InsultChatJob.perform_async(id)
   end
