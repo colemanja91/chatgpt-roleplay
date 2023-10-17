@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_17_013912) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_17_193435) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -39,7 +39,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_17_013912) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "insult_session_id", null: false
+    t.bigint "voice_id"
     t.index ["insult_session_id"], name: "index_insult_session_characters_on_insult_session_id"
+    t.index ["voice_id"], name: "index_insult_session_characters_on_voice_id"
   end
 
   create_table "insult_session_messages", force: :cascade do |t|
@@ -98,6 +100,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_17_013912) do
 
   add_foreign_key "characters", "voices"
   add_foreign_key "insult_session_characters", "insult_sessions"
+  add_foreign_key "insult_session_characters", "voices"
   add_foreign_key "insult_session_messages", "insult_session_characters"
   add_foreign_key "insult_session_messages", "insult_sessions"
   add_foreign_key "messages", "characters"

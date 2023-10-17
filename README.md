@@ -94,8 +94,6 @@ Initial development is happening during Twitch streams, and we'll use this as ou
 * Add `voice_id` relation to `InsultSessionCharacter`
 * Add TTS job for insults
 * Add GQL
-  * Start insult session
-    * Enqueues job
   * Add character
   * Remove character
   * Add death
