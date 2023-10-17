@@ -21,9 +21,14 @@ RSpec.describe "Start Insult Session Mutation" do
   let(:variables) { {input: {id: session.id}} }
   let(:subject) { ChatgptRoleplaySchema.execute(mutation, variables: variables) }
 
+  before do
+    allow(InsultChatJob).to receive(:perform_async).with(session.id).and_call_original
+  end
+
   it "starts the session" do
     expect(session.started_at).to be_nil
     subject
     expect(session.reload.started_at).not_to be_nil
+    expect(InsultChatJob).to have_received(:perform_async).with(session.id)
   end
 end

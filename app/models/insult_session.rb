@@ -22,6 +22,7 @@ class InsultSession < ApplicationRecord
     self.started_at = Time.now
     self.ended_at = nil
     save!
+    InsultChatJob.perform_async(id)
   end
 
   private
