@@ -7,7 +7,8 @@ class InsultChatService
 
   def process!
     response = openai.get_chat_completion(messages: prompt)
-    session.insult_session_messages.create!(content: response, insult_session_character: character)
+    message = session.insult_session_messages.create!(content: response, insult_session_character: character)
+    GenerateInsultTtsJob.perform_async(message.id)
   end
 
   private
