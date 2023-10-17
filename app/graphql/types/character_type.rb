@@ -10,10 +10,6 @@ module Types
     field :system_message_tokens, Integer
     field :tts_enabled, Boolean
     field :openai_model, String
-    field :xi_voice_id, ID
-    field :xi_similarity_boost, Float
-    field :xi_stability, Float
-    field :xi_style, Float
     field :context_size, Integer
     field :variable_temperature_enabled, Boolean
     field :avatar_url, String

@@ -24,10 +24,6 @@ RSpec.describe "Create Character Mutation" do
         systemMessage: "test system message",
         ttsEnabled: true,
         voiceId: voice.id,
-        xiVoiceId: "abc12345",
-        xiSimilarityBoost: 0.5,
-        xiStability: 0.5,
-        xiStyle: 0.4,
         contextSize: 16000,
         variableTemperatureEnabled: true,
         avatarUrl: "foo"

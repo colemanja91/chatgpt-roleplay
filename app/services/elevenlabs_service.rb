@@ -10,10 +10,11 @@ class ElevenlabsService
     end
 
     character = message.character
-    voice_id = character.xi_voice_id || "nlh17gSD8ihOEnpn4DWI"
-    similarity_boost = character.xi_similarity_boost || 0
-    stability = character.xi_stability || 0
-    style = character.xi_style || 0
+    voice = character.voice
+    voice_id = voice&.xi_voice_id || "nlh17gSD8ihOEnpn4DWI"
+    similarity_boost = voice&.xi_similarity_boost || 0
+    stability = voice&.xi_stability || 0
+    style = voice&.xi_style || 0
 
     speech = client.post(
       "text-to-speech/#{voice_id}",
