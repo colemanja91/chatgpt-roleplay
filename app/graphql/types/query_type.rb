@@ -49,5 +49,11 @@ module Types
     def voices
       Voice.all.order(name: :asc)
     end
+
+    # Only returning one for now, for simplicity purposes
+    field :insult_session, InsultSessionType, "Last insult session"
+    def insult_session
+      InsultSession.last
+    end
   end
 end

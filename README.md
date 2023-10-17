@@ -91,18 +91,19 @@ Initial development is happening during Twitch streams, and we'll use this as ou
 
 **Now**
 
-* Add ad-hoc job to generate a new insult
-  * To be used on start and death
 * Add `voice_id` relation to `InsultSessionCharacter`
 * Add TTS job for insults
 * Add GQL
   * New insult session
   * Start insult session
+    * Enqueues job
   * Add character
   * Remove character
   * Get insult session
     * Includes the latest insult
       * Some mechanism to tell if an insult was already played?
+  * Add death
+    * Enqueues job
   * End session
 
 **Next**
