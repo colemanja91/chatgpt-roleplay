@@ -269,6 +269,7 @@ GEM
       rubocop-performance (~> 1.19.0)
     stringio (3.0.8)
     thor (1.2.2)
+    timecop (0.9.8)
     timeout (0.4.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
@@ -299,6 +300,7 @@ DEPENDENCIES
   ruby-openai
   sidekiq
   standard
+  timecop
   tzinfo-data
 
 RUBY VERSION

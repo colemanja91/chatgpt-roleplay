@@ -32,6 +32,7 @@ group :development, :test do
   gem "rspec"
   gem "rspec-rails"
   gem "standard"
+  gem "timecop"
 end
 
 group :development do
