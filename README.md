@@ -91,9 +91,7 @@ Initial development is happening during Twitch streams, and we'll use this as ou
 
 **Now**
 
-* Add TTS job for insults
 * Add GQL
-  * Add character
   * Remove character
   * Add death
     * Enqueues job
