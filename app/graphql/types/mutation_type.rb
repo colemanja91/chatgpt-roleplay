@@ -1,5 +1,6 @@
 module Types
   class MutationType < Types::BaseObject
+    field :remove_insult_session_character, mutation: Mutations::RemoveInsultSessionCharacter
     field :add_character_to_insult_session, mutation: Mutations::AddCharacterToInsultSession
     field :start_insult_session, mutation: Mutations::StartInsultSession
     field :clear_message_history, mutation: Mutations::ClearMessageHistory

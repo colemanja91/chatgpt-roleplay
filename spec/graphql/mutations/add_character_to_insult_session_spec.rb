@@ -32,7 +32,7 @@ RSpec.describe "Add Character to Insult Session Mutation" do
     expect { subject }.to change { session.reload.insult_session_characters.count }.by(1)
   end
 
-  it "starts the session" do
+  it "returns the right data" do
     result = subject
     expect(result["data"]["addCharacterToInsultSession"]["insultSession"]["characters"][0]["description"]).to eq("yo this is a character")
     expect(result["data"]["addCharacterToInsultSession"]["insultSession"]["characters"][0]["voice"]["id"]).to eq(voice.id.to_s)
