@@ -1,6 +1,8 @@
 require_relative "../../rails_helper"
 
 RSpec.describe "Create Character Mutation" do
+  let!(:voice) { create(:voice) }
+
   let(:mutation) do
     querystring = <<-GRAPHQL
       mutation CreateCharacter($input: CreateCharacterInput!) {
@@ -21,6 +23,7 @@ RSpec.describe "Create Character Mutation" do
         name: "test name",
         systemMessage: "test system message",
         ttsEnabled: true,
+        voiceId: voice.id,
         xiVoiceId: "abc12345",
         xiSimilarityBoost: 0.5,
         xiStability: 0.5,

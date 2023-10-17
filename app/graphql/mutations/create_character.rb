@@ -7,6 +7,7 @@ module Mutations
     argument :system_message, String, required: true
     argument :tts_enabled, Boolean, required: false
     argument :openai_model, String, required: false
+    argument :voice_id, ID, required: false
     argument :xi_voice_id, ID, required: false
     argument :xi_similarity_boost, Float, required: false
     argument :xi_stability, Float, required: false
@@ -20,6 +21,7 @@ module Mutations
       system_message:,
       tts_enabled: false,
       openai_model: nil,
+      voice_id: nil,
       xi_voice_id: nil,
       xi_similarity_boost: nil,
       xi_stability: nil,
@@ -33,6 +35,7 @@ module Mutations
         system_message: system_message,
         tts_enabled: tts_enabled,
         openai_model: openai_model,
+        voice_id: voice_id,
         xi_voice_id: xi_voice_id,
         xi_similarity_boost: xi_similarity_boost,
         xi_stability: xi_stability,
