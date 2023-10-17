@@ -91,9 +91,6 @@ Initial development is happening during Twitch streams, and we'll use this as ou
 
 **Now**
 
-* Add GQL
-  * End session
-
 **Next**
 
 * Generate a summary message from a range of message history
