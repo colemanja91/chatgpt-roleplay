@@ -8,9 +8,6 @@ class InsultChatService
   def process!
     response = openai.get_chat_completion(messages: prompt)
     session.insult_session_messages.create!(content: response, insult_session_character: character)
-  rescue OpenaiService::OpenaiError => e
-    puts "Oh noes! #{e.inspect}"
-    @error = "error calling OpenAI"
   end
 
   private

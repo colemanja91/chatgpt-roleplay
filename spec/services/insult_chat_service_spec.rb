@@ -12,7 +12,12 @@ RSpec.describe InsultChatService do
     allow(openai_service).to receive(:get_chat_completion).and_return("Wow u r bad")
   end
 
-  it "calls OpenaiService and creates a new message" do
+  it "creates a new message" do
     expect { subject.process! }.to change { session.insult_session_messages.count }.by(1)
+  end
+
+  it "calls OpenaiService" do
+    subject.process!
+    expect(openai_service).to have_received(:get_chat_completion)
   end
 end

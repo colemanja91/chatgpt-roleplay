@@ -8,6 +8,16 @@ class InsultSession < ApplicationRecord
   has_many :insult_session_characters
   has_many :insult_session_messages
 
+  def safeguard!
+    return false if ended_at.present? || started_at.nil?
+
+    if started_at <= 3.hours.ago
+      self.ended_at = Time.now
+      save!
+      true
+    end
+  end
+
   private
 
   def set_defaults

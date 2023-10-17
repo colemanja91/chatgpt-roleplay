@@ -91,10 +91,6 @@ Initial development is happening during Twitch streams, and we'll use this as ou
 
 **Now**
 
-* Add `last_polled_at` to insult sessions (or to cache)
-* Add scheduled job to check for / generate new insult
-  * Between every 3 - 6 minutes
-  * Something to end the session if not last active in a certain amount of time
 * Add ad-hoc job to generate a new insult
   * To be used on start and death
 * Add `voice_id` relation to `InsultSessionCharacter`
@@ -107,6 +103,7 @@ Initial development is happening during Twitch streams, and we'll use this as ou
   * Get insult session
     * Includes the latest insult
       * Some mechanism to tell if an insult was already played?
+  * End session
 
 **Next**
 
