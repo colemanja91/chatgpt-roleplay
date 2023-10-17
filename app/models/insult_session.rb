@@ -18,6 +18,12 @@ class InsultSession < ApplicationRecord
     end
   end
 
+  def start!
+    self.started_at = Time.now
+    self.ended_at = nil
+    save!
+  end
+
   private
 
   def set_defaults
