@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_16_224714) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_17_013912) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -32,6 +32,36 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_16_224714) do
     t.bigint "voice_id"
     t.index ["name"], name: "unique_characters", unique: true
     t.index ["voice_id"], name: "index_characters_on_voice_id"
+  end
+
+  create_table "insult_session_characters", force: :cascade do |t|
+    t.string "description", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "insult_session_id", null: false
+    t.index ["insult_session_id"], name: "index_insult_session_characters_on_insult_session_id"
+  end
+
+  create_table "insult_session_messages", force: :cascade do |t|
+    t.string "content", null: false
+    t.string "tts_file_path"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "insult_session_id", null: false
+    t.bigint "insult_session_character_id", null: false
+    t.index ["insult_session_character_id"], name: "index_insult_session_messages_on_insult_session_character_id"
+    t.index ["insult_session_id"], name: "index_insult_session_messages_on_insult_session_id"
+  end
+
+  create_table "insult_sessions", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "started_at", precision: nil
+    t.datetime "ended_at", precision: nil
+    t.string "game", null: false
+    t.bigint "death_counter", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "unique_insult_session_names", unique: true
   end
 
   create_table "messages", force: :cascade do |t|
@@ -67,6 +97,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_16_224714) do
   end
 
   add_foreign_key "characters", "voices"
+  add_foreign_key "insult_session_characters", "insult_sessions"
+  add_foreign_key "insult_session_messages", "insult_session_characters"
+  add_foreign_key "insult_session_messages", "insult_sessions"
   add_foreign_key "messages", "characters"
   add_foreign_key "summaries", "characters"
 end
