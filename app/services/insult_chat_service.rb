@@ -6,7 +6,7 @@ class InsultChatService
   attr_reader :session, :error
 
   def process!
-    response = openai.get_chat_completion(messages: prompt)
+    response = openai.get_chat_completion(messages: [{role: "user", content: prompt}])
     message = session.insult_session_messages.create!(content: response, insult_session_character: character)
     GenerateInsultTtsJob.perform_async(message.id)
   end
